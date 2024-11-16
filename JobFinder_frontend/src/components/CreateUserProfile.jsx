@@ -255,7 +255,7 @@ const CreateUserProfile = () => {  // Replace with actual user ID
 
     return (
         <Container>
-            <Form onSubmit={handleSubmit}>
+            {profile ? <Form onSubmit={handleSubmit}>
                 <Row>
                     {/* Username */}
                     <Col xs={12} md={8}>
@@ -321,7 +321,7 @@ const CreateUserProfile = () => {  // Replace with actual user ID
                                         profile.experience.map((experience, index) => (
                                             <Badge key={index} bg="light" text="dark" className="me-2">
                                                 {experience}
-                                                <span className='m-2' onClick={()=>handleExperience(index)}>X</span>
+                                                <Button variant="danger" className='ms-2 rounded-sm' onClick={()=>handleExperience(index)}>x</Button>
                                             </Badge>
                                         ))
                                     }
@@ -388,7 +388,7 @@ const CreateUserProfile = () => {  // Replace with actual user ID
                                     {profile.skills.map((skill, index) => (
                                         <Badge key={index} onClick={()=>handleSkills(index)} pill bg="light" text="dark" className="me-2">
                                             {skill}
-                                            <span className='m-2' onClick={()=>handleSkills(index)} >X</span>
+                                            <Button variant="danger" className='ms-2 rounded-sm' onClick={()=>handleSkills(index)}>x</Button>
                                         </Badge>
                                     ))}
                                 </div>
@@ -415,7 +415,7 @@ const CreateUserProfile = () => {  // Replace with actual user ID
                                     {profile.certifications.map((certification, index) => (
                                         <Badge key={index} pill bg="light" text="dark" className="me-2">
                                             {certification}
-                                            <span className='m-2' onClick={()=>handleCertification(index)}>X</span>
+                                            <Button variant="danger" className='ms-2 rounded-sm' onClick={()=>handleCertification(index)}>x</Button>
                                         </Badge>
                                     ))}
                                 </div>
@@ -442,7 +442,8 @@ const CreateUserProfile = () => {  // Replace with actual user ID
                                     {profile.languages.map((language, index) => (
                                         <Badge key={index} pill bg="light" text="dark" className="me-2">
                                             {language}
-                                            <button className='m-2 border-none' onClick={()=>handleLanguages(index)}>X</button>
+                                            {/* <button className='m-2 border-none' onClick={()=>handleLanguages(index)}>X</button> */}
+                                            <Button variant="danger" className='ms-2 rounded-sm' onClick={()=>handleLanguages(index)}>x</Button>
                                         </Badge>
                                     ))}
                                 </div>
@@ -467,7 +468,7 @@ const CreateUserProfile = () => {  // Replace with actual user ID
                         </Button>
                     </Col>
                 </Row>
-            </Form>
+            </Form>: <p>loading...</p>}
         </Container>
     );
 };

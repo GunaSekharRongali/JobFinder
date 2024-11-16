@@ -2,9 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Card, Button, Row, Col } from 'react-bootstrap';
 import { getAllJobs } from '../api';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 const JobList = () => {
     const [jobs, setJobs] = useState([]);
+
+    const dispatch = useDispatch();
+    const appliedJobs = useSelector(state => state.job.appliedJobs);
 
     useEffect(() => {
         const fetchJobs = async () => {
@@ -26,6 +30,11 @@ const JobList = () => {
                             {job.remote? (<Card.Text>Remote Job</Card.Text>) :""}
                             <Card.Text><strong>Location:</strong> {job.location}</Card.Text>
                             <Card.Text><strong>Job Type:</strong> {job.type}</Card.Text>
+                            <Card.Text>
+                                {
+                                    appliedJobs.includes(job._id)?"applied":""
+                                }
+                            </Card.Text>
                             <Link to={`/jobs/${job._id}`}>
                                 <Button variant="primary">View Details</Button>
                             </Link>

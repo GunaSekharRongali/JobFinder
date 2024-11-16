@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Card, ListGroup } from 'react-bootstrap';
+import { Card, ListGroup, Button } from 'react-bootstrap';
 import { getUserApplications, login } from '../api';
+import { Link } from 'react-router-dom';
 
 const ApplicationList = () => {
     const userId = localStorage.getItem("userProfile");
@@ -27,7 +28,9 @@ const ApplicationList = () => {
                             <h5>{app.job.title}</h5>
                             <p>Status: {app.status}</p>
                             <p>Applied on: {new Date(app.appliedDate).toLocaleDateString()}</p>
-                            
+                            <Link to={`/jobs/${app.job._id}`}>
+                                <Button variant="primary">View Details</Button>
+                            </Link>
                         </ListGroup.Item>
                     ))
                 ) : (
