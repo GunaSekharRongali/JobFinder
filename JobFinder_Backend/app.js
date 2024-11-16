@@ -21,6 +21,10 @@ app.use('/api', jobRoutes);
 app.use('/api', userRoutes);
 app.use('/api', applicationRoutes);
 
+// Serve static files from the Vite build folder
+const distPath = path.join(__dirname, 'dist');
+app.use(express.static(distPath));
+
 app.use((req, res, next) => {
     console.log(`Request made to: ${req.url}`);
     next();
